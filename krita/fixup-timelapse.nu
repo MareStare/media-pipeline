@@ -9,10 +9,9 @@ def main [$path: string] {
     let filter = (
         [
             "negate",
-            "blackframe=amount=0:threshold=99",
-            "metadata=select:key=lavfi.blackframe.pblack:value=99:function=less",
+            "blackframe=amount=0:threshold=98",
+            "metadata=select:key=lavfi.blackframe.pblack:value=98:function=less",
             "negate",
-            "blackframe=amount=0:threshold=99",
             "setpts=N/FRAME_RATE/TB"
         ]
         | str join ","
