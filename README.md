@@ -9,3 +9,13 @@ Contains Python scripts that can be added to Krita via `Tools -> Ten Scripts`.
 ## davinci-resolve
 
 Contains `.setting` files with common Fusion macros.
+
+Make sure to add this to VSCode settings to enable syntax highlighting for `.setting` files:
+
+```json
+{
+  "files.associations": {
+    "*.setting": "lua",
+  }
+}
+```
