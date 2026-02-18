@@ -1,12 +1,15 @@
 from krita import *
 import os
 
-# Defaults
-sizes = {
-    "1": 60,
-    "2": 30,
-    "3": 10,
+preset = "4k"
+
+size_presets = {
+    "4k": [15, 10, 6],
+    "large": [60, 30, 10],
 }
+
+# Defaults
+sizes = size_presets[preset]
 
 default_smooth = None
 
@@ -45,7 +48,7 @@ def run(script_path: str):
 
     if tool_name.startswith("brush-size"):
         size_key = tool_name.replace("brush-size-", "")
-        size = sizes.get(size_key)
+        size = sizes[int(size_key) - 1]
         if size is None:
             raise ValueError(f"Unknown brush size: {size_key}")
 
@@ -53,8 +56,12 @@ def run(script_path: str):
         return
 
     if tool_name == "fill":
-        app.action("KritaFill/KisToolFill").trigger()
+        # Just setting `erase_action` to False when switching from an eraser
+        # doesn't seem to work on the fill tool. A workaround is to temporarily
+        # switch to a regular brush and disable the `erase_action`.
+        app.action("activate_preset_3").trigger()
         app.action("erase_action").setChecked(False)
+        app.action("KritaFill/KisToolFill").trigger()
         return
 
     if tool_name.startswith("eraser"):
