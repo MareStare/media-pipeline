@@ -2,7 +2,7 @@ def main [] {}
 
 def "main download" [video_url: string] {
     # Download with the best video (bv) and the best audio (ba) quality
-    ^yt-dlp -f "bv*+ba/b" $video_url
+    yt-dlp -f "bv*+ba/b" $video_url
 }
 
 def "main encode" [path: string] {
