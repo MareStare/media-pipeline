@@ -1,11 +1,13 @@
 from krita import *
 import os
 
-preset = "4k"
+preset = "2k"
 
 size_presets = {
+    "s": [20, 15, 10],
     "4k": [15, 10, 6],
-    "large": [60, 30, 10],
+    "2k": [10, 6, 3],
+    "1k": [8, 5, 3],
 }
 
 # Defaults
